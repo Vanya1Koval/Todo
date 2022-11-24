@@ -12,7 +12,7 @@ const {
 
 router.post('/', isAuthenticated, validation(), createToDoAction);
 router.get('/', isAuthenticated, queryValidation(), getToDosAction);
-router.delete('/', isAuthenticated, deleteToDoAction);
-router.put('/', isAuthenticated, validation(), updateToDoAction);
+router.delete('/:id', isAuthenticated, deleteToDoAction);
+router.put('/:id', isAuthenticated, validation(), updateToDoAction);
 
 module.exports = router;

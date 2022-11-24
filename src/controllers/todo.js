@@ -1,5 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
-
 const {
     createToDo,
     getToDos,
@@ -40,7 +38,7 @@ const getToDosAction = async (req, res) => {
 
 const deleteToDoAction = async (req, res) => {
     try {
-        const { id } = req.body;
+        const { id } = req.params;
         await deleteToDo(id);
         return res.status(201).send(`Todo with id ${id} was deleted`);
     } catch (err) {
@@ -51,8 +49,9 @@ const deleteToDoAction = async (req, res) => {
 
 const updateToDoAction = async (req, res) => {
     try {
-        const { id, title, description } = req.body;
-        const updatedToDo = await updateToDo(id, title, description);
+        const { id } = req.params;
+        const { title, description, deadline } = req.body;
+        const updatedToDo = await updateToDo(id, title, description, deadline);
         return res.status(201).send(updatedToDo);
     } catch (err) {
         console.log('Update todo Action - Cannot update todo', err);

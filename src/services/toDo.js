@@ -37,9 +37,9 @@ const deleteToDo = async (id) => ToDoModel.findOneAndDelete({_id: `${id}`});
   * @param  {String} description todo description
   * @returns {Object} updated todo
   */
-const updateToDo = async (id, title, description) => {
+const updateToDo = async (id, title, description, deadline) => {
     return ToDoModel.findOneAndUpdate({_id: `${id}`},
-    { $set: { title, description }},
+    { $set: { title, description, deadline }},
         {returnOriginal: false}
     )
 };
